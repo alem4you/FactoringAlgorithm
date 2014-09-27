@@ -22,7 +22,7 @@ public class TableElement {
 		this.r=r;
 		this.rSquared=r.pow(2).mod(Factoring.BASE);
 		
-		// COMPUTE DECOMPOSITION
+		// COMPUTE SCOMPOSITION
 		
 		BigInteger number = rSquared;
 		for(int i=0;i<primes.size() && !r.equals(BigInteger.ONE); i++) {
