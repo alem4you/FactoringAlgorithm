@@ -13,7 +13,7 @@ public class Factoring {
 
 	public static final int NUM_PRIMES = 1000;
 	public static final int NUM_ELEMENTS_TABLE = NUM_PRIMES + 10;
-	public static final BigInteger BASE = new BigInteger("165895369126610396357353");
+	public static final BigInteger BASE = new BigInteger("91967379518938584281857");
 
 
 	public static ArrayList<Integer> primeGenerator() {
@@ -139,9 +139,15 @@ public class Factoring {
 
 
 		// RUNNING GAUSS BIN
-		System.out.println("Starting GaussBin.exe and waiting its termination");
-		Process process = Runtime.getRuntime ().exec ("GaussBin.exe input.txt output.txt");
-
+		System.out.println("Starting GaussBin and waiting its termination");
+		
+		if(System.getProperty("os.name").compareTo("windows")==0) {
+			Process process = Runtime.getRuntime ().exec ("GaussBin.exe input.txt output.txt");
+		}
+		else {
+			
+			Process process = Runtime.getRuntime ().exec ("./GaussBin.out input.txt output.txt");
+		}
 		Thread.sleep(5000);
 		// GAUSS BIN ENDS
 
