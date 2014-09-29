@@ -14,7 +14,8 @@ public class Factoring {
 	public static final int NUM_PRIMES = 1000;
 	public static final int NUM_ELEMENTS_TABLE = NUM_PRIMES + 10;
 	public static BigInteger BASE;
-
+	public static boolean output;
+	
 	public static ArrayList<Integer> primeGenerator() {
 
 		ArrayList<Integer> primes = new ArrayList<Integer>();
@@ -60,11 +61,16 @@ public class Factoring {
 			BASE = new BigInteger("91967379518938584281857");
 		}
 		
+		if(args.length>1 && args[1].contains("-o")) {
+			output=true;
+		}
+		
 		long startTime = System.currentTimeMillis();
 
 		// START GENERATING PRIMES
 		ArrayList<Integer> primes = primeGenerator();
-		System.out.println("Generated factorbase --> " + primes);
+		if(output)
+			System.out.println("Generated factorbase --> " + primes);
 		// FINISH GENERATING PRIMES
 
 
@@ -102,7 +108,8 @@ public class Factoring {
 
 						if(table.get(i).sameFactorBase(elemAspirant)) {
 							notValid=true;
-							System.out.println("Not valid found");
+							if(output)
+								System.out.println("Not valid found");
 							break;
 						}
 
@@ -111,7 +118,8 @@ public class Factoring {
 					if(!notValid) {
 
 						table.add(elemAspirant);
-						System.out.println("ADDED --> " + elemAspirant.rSquared + "ELEMENT # --> " + table.size());
+						if(output)
+							System.out.println("ADDED --> " + elemAspirant.rSquared + "ELEMENT # --> " + table.size());
 					}
 
 				}
@@ -127,7 +135,8 @@ public class Factoring {
 
 
 		// PREPARING FILE
-		System.out.println("Starting writing the file");
+		if(output)
+			System.out.println("Starting writing the file");
 		FileOutputStream input = new FileOutputStream("input.txt");
 		PrintStream write = new PrintStream(input);
 
@@ -140,12 +149,14 @@ public class Factoring {
 		}
 
 		write.close();
-		System.out.println("Finished to write the file");
+		if(output)
+			System.out.println("Finished to write the file");
 		// END PREPARING FILE
 
 
 		// RUNNING GAUSS BIN
-		System.out.println("Starting GaussBin and waiting its termination");
+		if(output)
+			System.out.println("Starting GaussBin and waiting its termination");
 		
 		if(System.getProperty("os.name").compareTo("windows")==0) {
 			Process process = Runtime.getRuntime ().exec ("GaussBin.exe input.txt output.txt");
@@ -241,8 +252,7 @@ public class Factoring {
 			if((!value.equals(BigInteger.ONE)) && !value.equals(BASE)) {
 				
 				
-				System.out.println();
-				System.out.println("Solution found!" + "The factors of "+ BASE +" are " + value + " and " + BASE.divide(value));
+				System.out.println("\nSolution found!" + "The factors of "+ BASE +" are " + value + " and " + BASE.divide(value));
 				break;
 			}
 
