@@ -1,4 +1,5 @@
 import java.io.BufferedReader;
+import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.FileReader;
@@ -259,6 +260,10 @@ public class Factoring {
 			
 		}
 
+		File file = new File("input.txt");
+		file.delete();
+		file = new File("output.txt");
+		file.delete();
 		
 	    long endTime = System.currentTimeMillis();
 
