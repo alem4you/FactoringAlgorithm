@@ -13,8 +13,7 @@ public class Factoring {
 
 	public static final int NUM_PRIMES = 1000;
 	public static final int NUM_ELEMENTS_TABLE = NUM_PRIMES + 10;
-	public static final BigInteger BASE = new BigInteger("91967379518938584281857");
-
+	public static BigInteger BASE;
 
 	public static ArrayList<Integer> primeGenerator() {
 
@@ -37,7 +36,6 @@ public class Factoring {
 		return primes;
 	}
 
-
 	public static BigInteger squareRoot(BigInteger x) {
 		BigInteger right = x, left = BigInteger.ZERO, mid;
 		while(right.subtract(left).compareTo(BigInteger.ONE) > 0) {
@@ -51,9 +49,17 @@ public class Factoring {
 	} 
 
 
-
 	public static void main(String args[]) throws IOException, InterruptedException {
 
+		if(args.length>0) {
+			
+			BASE = new BigInteger(args[0]);
+			
+		}
+		else {
+			BASE = new BigInteger("91967379518938584281857");
+		}
+		
 		long startTime = System.currentTimeMillis();
 
 		// START GENERATING PRIMES
